@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block tite %}New Post{% endblock %}
+
+
+{% block content %}
+<main class="container">
+<div class="row g-5">
+    <div class="col-md-8">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-8 py-2">
+                    <p>Category : {{ form.category }}</p>
+                </div>
+                <div class="col-10">
+                    <p>Title : {{form.title}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    {{ form.body }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 py-2">
+                    <p>Image : {{ form.image }}</p>
+                </div>
+                <div class="col-8">
+                    <p>Status : {{ form.status }}</p>
+                </div>
+            </div>
+            <button class="btn btn-success" type="submit"> Post </button>
+        </form>
+    </div>
+    {% include 'includes/sidebar.html' %}
+</div>
+</main>
+{% endblock %}

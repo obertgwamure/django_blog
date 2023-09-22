@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}        
+    <div class="main-wrapper">
+	    
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container single-col-max-width">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">{{ post.title }}</h2>
+                    <div class="meta mb-1">
+                        <span class="date">{{ post.date_created }}</span>
+                        <!-- A custome filter was used to calculate the number of minutes to read the text -->
+                        <!-- The 1200 comes from 200 words per minutes X 6 letters in a word on average -->
+                        <span class="time">{{ post.body|length|divide_by:1200 }} min read</span> 
+                        <span class="comment"><a class="text-link" href="#">{{ post.comments.count }} comments</a></span>
+                        <span class="badge badge-secondary">{{ post.category.title }}</span>
+                    </div>
+			    </header>
+			    
+			    <div class="blog-post-body">
+				    <figure class="blog-banner">
+				        <a href="#"><img class="img-fluid mt-2" src="{{ post.image.url }}" alt="image" width="600", height="400"></a>
+				        <figcaption class="mt-2 text-center image-caption">Image : {{ post.title }}</figcaption>
+				    </figure>
+				    
+				    {{ post.body|safe }}
+
+				    <div class="ratio ratio-16x9">
+					   <iframe width="560" height="315" src="{{ post.youtube_link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>					
+					</div>
+				   
+			    </div>
+				    
+				<div class="blog-comments-section">
+					
+                </div>			
+		    </div><!--//container-->
+	    </article>
+	    
+	    <section class="promo-section theme-bg-light py-5 text-center">
+		    <div class="container">
+			    <h2 class="title">Promo Section Heading</h2>
+			    <p>You can use this section to promote your side projects etc. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+                <figure class="promo-figure">
+			        <a href="https://made4dev.com" target="_blank"><img class="img-fluid" src="assets/images/promo-banner.jpg" alt="image"></a>
+			    </figure>
+		    </div><!--//container-->
+	    </section><!--//promo-section-->
+    </div>
+
+    
+{% endblock %}
